@@ -33,6 +33,7 @@ class _ModifyFormState extends State<_ModifyForm> {
   final TextEditingController _hpController = TextEditingController();
   final TextEditingController _companyController = TextEditingController();
 
+
   //변수
   late Future<PersonVo> personVoFuture;
 
@@ -40,6 +41,9 @@ class _ModifyFormState extends State<_ModifyForm> {
   @override
   void initState() {
     super.initState();
+
+
+
   }
 
   //화면 그리기
@@ -54,6 +58,8 @@ class _ModifyFormState extends State<_ModifyForm> {
     late final personId = args['personId'];
     personVoFuture = modifyPerson(personId);
 
+
+
     return FutureBuilder(
         future: personVoFuture, //Future<> 함수명, 으로 받은 데이타
         builder: (context, snapshot) {
@@ -65,6 +71,10 @@ class _ModifyFormState extends State<_ModifyForm> {
             return Center(child: Text('데이터가 없습니다.'));
           } else {
             //데이터가 있으면
+            _nameController.text = snapshot.data!.name;
+            _hpController.text = snapshot.data!.hp;
+            _companyController.text = snapshot.data!.company;
+
 
             return Container(
               color: Color(0xffffffff),
